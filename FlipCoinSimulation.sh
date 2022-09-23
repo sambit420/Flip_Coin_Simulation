@@ -1,44 +1,52 @@
-read -p "Enter no of times to toss: " n
+#Variables
 
+target_count=21
 heads_count=0
 tails_count=0
+flips_count=0
 
-for(( i = 1; i <= n; i++ ))
 
+while(( 1 ))
 do
 
+    (( flips_count++ ))
+    echo -n "Flip-$flips_count is "
     toss=$(( RANDOM % 2 ))
+    
     if(( toss == 0 ))
-
     then
 
-        echo "Flip-$i Heads"
+        echo "Heads"
         (( heads_count++ ))
 
     else
 
-        echo "Flip-$i Tails"
+        echo "Tails"
         (( tails_count++ ))
+
+    fi
+
+    if(( heads_count == target_count || tails_count == target_count ))
+    then
+
+        break
 
     fi 
 
 done
 
-echo "The Heads count is $heads_count" 
-
+echo "Heads count is $heads_count" 
 echo "Tails Count is $tails_count"
 
 if(( heads_count > tails_count ))
-
 then
 
-    echo "Winner is Heads"
+    echo "Heads won by $(( heads_count - tails_count ))"
 
 elif(( tails_count > heads_count ))
-
 then
 
-    echo "Winner is Tails"
+    echo "Tails won by $(( tails_count - heads_count ))"
 
 else    
 
